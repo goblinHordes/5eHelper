@@ -1,0 +1,261 @@
+  <style>
+    div.statblock {
+      width: 424px;
+      display: block;
+      line-height: 1;
+    }
+
+    #content-wrap {
+      font-family: 'Noto Sans', 'Myriad Pro', Calibri, Helvetica, Arial,
+                    sans-serif;
+      font-size: 13px;
+      display: block;
+      background: #FDF1DC;
+      padding: 0.6em;
+      border: 1px #DDD solid;
+      box-shadow: 0 0 1.5em #867453;
+
+      /* We don't want the box-shadow in front of the bar divs. */
+      position: relative;
+      z-index: 0;
+
+      /* Leaving room for the two bars to protrude outwards */
+      margin-left: 2px;
+      margin-right: 2px;
+    }
+
+    div.statline div.header {
+      float:left;
+      clear:right;
+    }
+
+    div.header-section {
+      border-bottom: 1px solid #7A200D;
+      color: #7A200D;
+      margin-top: 5px;
+      padding-bottom: 5px;
+    }
+
+    div.body-section {
+      color: #000000;      
+      margin-top: 5px;
+    }
+
+
+    div.statblock h1 {
+      display:block;
+      font-size: 20px;
+      font-variant: small-caps;
+      font-weight: normal;
+      letter-spacing: 1px;
+      clear:both;
+      margin: 0;
+      padding: 0;
+      
+    }
+
+    div.statblock h2 {
+      color: #7A200D;            
+      font-variant: small-caps;
+      font-size: 16px;
+      border-bottom: 1px solid #7A200D;
+      display:block;
+      margin: 0;
+      margin-bottom: 3px;
+
+    }
+
+    div.header-section p {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    div.stats {
+      color: #7A200D;      
+      margin: 0;
+      padding-top: .5em;
+      padding-bottom: .5em;
+      overflow:auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    div.stat {
+      width: 16.66%;
+      float: left;
+      text-align:center;
+      position: relative;
+    }
+
+    div.stat h1 {
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: bold;
+      display:block;
+      padding: 0px;
+      margin: 0px;
+    }
+
+    div.stat p {
+      padding: 0;
+      margin: 0;
+    }
+
+    div dl{
+      line-height: 15px;
+      padding: 0;
+      margin: 0;
+    }
+
+    div dt {
+      font-weight:bold;
+    }
+
+    div dd,dt {
+      display: inline;
+      line-height: 15px;
+      margin:0px;
+      clear:left;
+    }
+
+    div dd {
+      font-weight: normal;
+      margin: 0 0 0 0;
+      padding: 0 0 0 0;
+    }
+
+    div dd:after {
+      content: '\A';
+      white-space: pre;
+    }
+
+    dl dl {
+      display: inline;
+    }
+
+    dl dl dt {
+      padding: 0;
+      margin: 0 0 0 .25em;
+      font-weight: normal;
+      font-style: italic;
+      display: inline;
+    }
+    
+    dl  dt:after {
+      content: " ";
+    }
+    
+    dl dl dd {
+      display: inline;
+      line-height: 15px;
+    }
+
+    div.body-section dd:after {
+      height: 5px;
+      display:block;
+    }
+    
+    div.body-section dd:last-child:after{
+      height: 0px;
+    }
+
+    div.body-section dl dl dd:after {
+      display: inline;
+      content: '';
+      white-space:none;
+    }
+
+    .bar {
+      height: 5px;
+      background: #E69A28;
+      border: 1px solid #000;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+
+<div class="statblock">
+
+  <div class="bar"></div>
+<div id="content-wrap">
+
+  <div class="header-section">
+    <h1><%= character.name %></h1>
+    <p><%= class_line(character) %></p>
+  </div>
+
+  <div class="header-section">
+    <dl><dt>Armor Class</dt><dd><%= character.armorclass %></dd>
+        <dt>Hit Points</dt><dd><%= character.hitpoints %></dd>
+        <dt>Speed</dt><dd><%= character.speed %></dd>
+    </dl>
+  </div>
+
+  <div class="header-section">
+    
+  <div class="stats">
+  <% character.stats.each do |name, stat| %>
+    <div class="stat">
+      <h1><%= name[0..2] %></h1>
+      <p><%= stat["value"] %><%= stat["savingthrow"] ? "&#9830;" : "&nbsp;"%>(<%= sprintf("%+d", stat["mod"]) %>)</p>
+    </div>
+  <% end %>   
+  </div>
+  </div>
+
+  <div class="header-section">
+    <dl>
+    <% if character.skills %>
+      <dt>Skills</dt>
+        <dd> <%= character.skills.map{|k,v| [k, sprintf("%+d", v)].join(" ")}.join(", ") %></dd>
+    <% end %> 
+    <% if @damage_vulnerabilities %>
+      <dt>Damage Vulnerabilities</dt>
+           <dd><%= @damage_vulnerabilities.join %></dd>
+    <% end %>
+    <% if @condition_vulnerabilities %>
+      <dt>Condition Vulnerabilities</dt>
+           <dd><%= @condition_vulnerabilities.join %></dd>
+    <% end %>
+    <% if @damage_immunities %>
+      <dt>Damage Immunities</dt>
+           <dd><%= @damage_immunities.join %></dd>
+    <% end %>
+    <% if @condition_immunities %>
+      <dt>Condition Immunities</dt>
+        <dd><%= @condition_immunities.join %><</dd>
+    <% end %>
+    <% if @senses %>
+      <dt>Senses</dt>
+        <dd><%= @senses.join %></dd>
+    <% end %>
+    <% if character.languages %>
+      <dt>Languages</dt><dd><%= character.languages.join(', ') %></dd>
+    <% end %>
+    </dl>
+  </div>
+
+  <% if character.traits %>
+  <div class="body-section">
+    <dl>
+      <% character.traits.each do |trait, description| %>
+      <dt><%= trait %>.</dt>
+        <dd><%= description%></dd>
+      <% end %>
+    </dl>
+  </div>
+  <% end %>
+
+  <% if character.actions %>
+  <div class="body-section">
+    <h2>Actions</h2>
+    <dl>
+    <% character.actions.each do |provider, actions| %>
+      <dt><%= provider %>.</dt><dd><%= action_helper(actions) %></dd>
+    <% end %>
+    </dl>
+  </div>
+  <% end %>
+</div>
+</div>
+</div>

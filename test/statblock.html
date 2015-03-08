@@ -1,0 +1,312 @@
+  <style>
+    div.statblock {
+      width: 424px;
+      display: block;
+
+    }
+
+    div.statline {
+       width: 600px;
+       display: block;
+      background: #FDF1DC;
+#box-shadow: 0 0 1.5em #867453;
+#padding: 0.6em;
+    }
+
+    #content-wrap {
+      font-family: 'Noto Sans', 'Myriad Pro', Calibri, Helvetica, Arial,
+                    sans-serif;
+      font-size: 13px;
+      display: block;
+      background: #FDF1DC;
+      padding: 0.6em;
+      border: 1px #DDD solid;
+      box-shadow: 0 0 1.5em #867453;
+
+      /* We don't want the box-shadow in front of the bar divs. */
+      position: relative;
+      z-index: 0;
+
+      /* Leaving room for the two bars to protrude outwards */
+      margin-left: 2px;
+      margin-right: 2px;
+    }
+
+    div.statline div.header {
+      float:left;
+      clear:right;
+    }
+
+    div.header_section {
+      border-bottom: 1px solid #7A200D;
+      color: #7A200D;
+      margin: 0;
+      padding-bottom: .5em;
+    }
+
+    div.statblock h1 {
+      display:block;
+      font-size: 18px;
+      font-variant: small-caps;
+      font-weight: normal;
+      letter-spacing: 1px;
+      clear:both;
+    }
+
+    div.statblock h2 {
+      color: #7A200D;            
+      font-variant: small-caps;
+      font-size: 14pt;
+      border-bottom: 1px solid #7A200D;
+      display:block;
+    }
+
+    }
+
+    div.body_section {
+      color: #7A200D;      
+      border-bottom: 3px solid #7A200D;
+      margin: 0;
+      padding-top: .5em;
+      padding-bottom: .5em;
+    }
+
+    
+    div.stats {
+      color: #7A200D;      
+      margin: 0;
+      padding-top: .5em;
+      padding-bottom: .5em;
+      overflow:auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    div.stat {
+      width: 16.66%;
+      float: left;
+      text-align:center;
+      position: relative;
+    }
+
+    div.stat h1 {
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: bold;
+      display:block;
+      padding: 0px;
+      margin: 0px;
+    }
+
+    div.stat p {
+      padding: 0;
+      margin: 0;
+    }
+
+
+    div.detailed_attributes {
+      color: #7A200D;      
+      border-bottom: 3px solid #7A200D;
+      margin: 0;
+      padding-top: .5em;
+      padding-bottom: .5em;
+    }
+
+    div.detailed_attributes label {
+      font-weight: bold;
+    }
+
+    div.features {
+      #border-bottom: 3px solid #7A200D;
+      margin: 0;
+      padding-top: .5em;
+      padding-bottom: .5em;
+    }
+
+    div dl{
+    }
+
+    div dt {
+      font-weight:bold;
+      float: left;
+      clear: left;
+    }
+
+    div dd,dt {
+      display: inline;
+      margin:0px;
+      clear:left;
+    }
+
+    div dd {
+      font-weight: normal;
+      margin: 0 0 0 .5em;
+      padding: 2em 0 1em 0;
+    }
+
+    div dd:after {
+      content: '\A';
+      white-space: pre;
+    }
+   
+    div.body_section dd:after {
+      content: '\A\A';
+      white-space: pre;
+    }
+   
+    .bar {
+      height: 5px;
+      background: #E69A28;
+      border: 1px solid #000;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+
+<div class="statline">
+<div class="bar"></div>
+  <div id="content-wrap">
+  <div class="header">
+    <h1><%=h @name %></h1>
+    <span class="armor_class">18</span>
+    <span class="hit_points">33</span>
+  </div>
+   <br /> 
+  <div class="stats">
+
+    <div class="stat">
+      <span class="stat_label">str</span>
+      <span id="constitution">14 (+2)</span>
+    </div>
+    
+    <div class="stat">
+      <span class="stat_label">dex</span>
+      <span id="constitution">11 (+0)</span>
+    </div>
+    
+    <div class="stat">
+      <span class="stat_label">con</span>
+      <span id="constitution">13 (+1)</span>
+    </div>
+    
+    <div class="stat">
+      <span class="stat_label">int</span>
+      <span id="intelligence">1 (-5)</span>
+    </div>
+    
+    <div class="stat">
+      <span class="stat_label">wis</span>
+      <span id="wisdom">3 (-4)</span>
+    </div>
+    
+    <div class="stat">
+      <span class="stat_label">cha</span>
+      <span id="charisma">1 (-5)</span>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+<div class="statblock">
+
+  <div class="bar"></div>
+<div id="content-wrap">
+
+  <div class="header_section">
+    <h1><%= @name%></h1>
+    <p><%= @size %> <%=@type">, <%= @alignment %></p>
+  </div>
+
+  <div class="header_section">
+    <dl><dt>Armor Class</dt><dd><%= @armor_class></dd>
+        <dt>Hit Points</dt><dd><%= @hit_points %></dd>
+        <dt>Speed</dt><dd><%= @speed %></dd>
+    </dl>
+  </div>
+
+  <div class="header_section">
+    
+  <div class="stats">
+
+    <div class="stat">
+      <h1>str</h1>
+      <p><%= @strength %> (<%= @strength_mod %>)</p>
+    </div>
+    
+    <div class="stat">
+      <h1>dex</h1>
+      <p><%= @dexderity %> (<%= @dexderity_mod %>)</p>
+    </div>
+    
+    <div class="stat">
+      <h1>con</h1>
+      <p><%= @consitiution %> (<%= @constitution_mod %>)</p>
+    </div>
+    
+    <div class="stat">
+      <h1>int</h1>
+      <p><%= @intelligence %> (<%= @intelligence_mod %>)</p>
+    </div>
+    
+    <div class="stat">
+      <h1>wis</h1>
+      <p><%= @wisdom %> (<%= @wisdom_mod %>)</p>
+    </div>
+    
+    <div class="stat">
+      <h1>cha</h1>
+      <p><%= @charisma %> (<%= @charisma_mod %>)</p>
+    </div>
+  </div>
+  </div>
+
+  <div class="header_section">
+    <dl>
+    <% if @damage_vulnerabilities %>
+      <dt>Damage Vulnerabilities</dt>
+           <dd><%= @damage_vulnerabilities.join %></dd>
+    <% end %>
+    <% if @condition_vulnerabilities %>
+      <dt>Condition Vulnerabilities</dt>
+           <dd><%= @condition_vulnerabilities.join %></dd>
+    <% end %>
+    <% if @damage_immunities %>
+      <dt>Damage Immunities</dt>
+           <dd><%= @damage_immunities.join %></dd>
+    <% end %>
+    <% if @condition_immunities %>
+      <dt>Condition Immunities</dt>
+        <dd><%= @condition_immunities.join %><</dd>
+    <%= end>
+      <dt>Senses</dt>
+        <dd><%= @senses.join %></dd>
+      <dt>Languages</dt><dd><%= @languages.join %></dd>
+    </dl>
+  </div>
+
+  <% if @special_traits %>
+  <div class="body_section">
+    <dl>
+    <% @special_traits.each do |trait, description| %>
+      <dt><%= trait %>.</dt>
+        <dd><%= description%></dd>
+    <% end %>
+    </dl>
+  </div>
+  <% end %>
+
+  <% if @actions %>
+  <div class="body_section">
+    <h2>Actions</h2>
+    <dl>
+    <% @actions.each do |action, description| %>
+      <dt><%= action %>.</dt>
+        <dd><%= description %></dd>
+    <% end >
+    </dl>
+  </div>
+
+</div>
+</div>
+</div>

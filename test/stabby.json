@@ -1,0 +1,96 @@
+{
+  "name": "Topper 'Stabby' Bottoms",
+  "player": "Ryan Merritt",
+
+  "size": "small",
+  "race": "halfling",
+  "subrace": "lightfoot",
+  "classlevels": {
+    "rogue": 5
+  },
+  "proficency": 3,
+  "background": "charlatan",
+  "sex": "female",
+  "alignment": "neutral good",
+  "experience": 6500,
+  "hitdice": {
+    "type": 8,
+    "count": 5
+  },
+  "armorclass": 18,
+  "hitpoints": 38,
+  "speed": 25,
+  "deathsaves": {
+    "successes": 0,
+    "failures": 0
+  },
+
+  "stats": {
+        "strength": { "value": 10, "mod":  0 },
+       "dexterity": { "value": 18, "mod":  4, "savingthrow": true },
+    "constitution": { "value": 14, "mod":  2 },
+    "intelligence": { "value": 8,  "mod": -1, "savingthrow": true },
+          "wisdom": { "value": 10, "mod":  0 },
+        "charisma": { "value": 16, "mod":  3 }
+  },
+
+  "skills": { "acrobatics": 7, "animal handling": 3, "deception": 6,
+              "pursuasion": 6, "slight of hand": 7, "stealth": 10 }, 
+  "languages": ["halfling", "common", "goblin" ],
+  "traits": {
+    "Assassinate": "Advantage on creature that hasn't taken a turn in combat yet. Any hit on a creature that is surprised is an automatic critical hit.",
+    "Sneak Attack": "Once per turn you can deal an extra 3d6 damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or ranged weapon. You don't need advantage if another enemy of the target is within 5ft."
+  },
+  "actions": {
+    "Rapier (Silvered)": {
+      "Melee Weapon Attack": {
+        "attack": {
+          "modifier": 7,
+          "proficient": true
+        },
+        "damage": {
+          "roll": {
+            "type": 8,
+            "number": 1
+          },
+          "modifier": 3,
+          "type": "piercing"
+        }
+      }
+    },
+
+    "Throwing Daggers": {
+      "Melee Weapon Attack": {
+        "attack": {
+          "modifier": 4,
+          "reach": 5,
+          "target": "one target"
+        },
+        "damage": {
+          "roll": {
+            "type": 4,
+            "number": 1 
+          },
+          "modifier": "3",
+          "type": "piercing"
+        }
+      },
+      "Ranged Weapon Attack": {
+        "attack": {
+          "modifier": "4",
+          "range": { "short": 30, "long": 120 },
+          "target": "one target"
+        },
+        "damage": {
+          "roll": {
+            "type": 4,
+            "number": 1
+          },
+          "modifier": 3,
+          "type": "piercing"
+        }
+      }
+    }
+  }
+}
+
